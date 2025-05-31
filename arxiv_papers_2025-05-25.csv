@@ -1,0 +1,2 @@
+﻿标题,中文标题,发布日期,领域分类,研究机构,PDF链接,论文链接,arXiv ID,简明摘要
+Text-to-Pipeline: Bridging Natural Language and Data Preparation Pipelines,Text-to-Pipeline：连接自然语言与数据准备流水线,21 May 2025,Agent,Other,http://arxiv.org/pdf/2505.15874v1,http://arxiv.org/abs/2505.15874v1,2505.15874v1,本文提出了Text-to-Pipeline任务，旨在将自然语言描述的数据准备指令自动转化为可执行的数据处理流程，降低数据准备的技术门槛。为此，作者构建了包含约1.8万个流程的PARROT基准，覆盖16种核心操作，基于真实数据和生产模式设计。实验表明，现有大型语言模型在该任务上表现有限，准确率不足73%。为提升效果，作者提出了Pipeline-Agent方法，通过迭代预测与执行操作，准确率提升至76%。该研究为自然语言驱动的数据处理自动化提供了重要基准和方法支持。
