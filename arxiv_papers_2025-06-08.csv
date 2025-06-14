@@ -1,0 +1,2 @@
+﻿标题,中文标题,发布日期,领域分类,研究机构,PDF链接,论文链接,arXiv ID,简明摘要
+From Standalone LLMs to Integrated Intelligence: A Survey of Compound Al Systems,从独立大语言模型到集成智能：复合人工智能系统综述,05 Jun 2025,Agent,Other,http://arxiv.org/pdf/2506.04565v1,http://arxiv.org/abs/2506.04565v1,2506.04565v1,本文综述了复合人工智能系统（CAIS），即将大型语言模型与检索器、代理、工具等外部组件结合，以提升记忆、推理、多模态理解等能力。文章提出了CAIS的定义和多维分类框架，分析了四大核心范式，比较了代表性系统的设计与评估方法。最后，指出了当前面临的关键挑战及未来研究方向，为推动系统级人工智能的发展提供了系统性指导和参考。
