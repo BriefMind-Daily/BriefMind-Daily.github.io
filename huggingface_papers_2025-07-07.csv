@@ -1,0 +1,7 @@
+﻿标题,中文标题,领域分类,研究机构,PDF链接,论文链接,简明摘要,Upvote数
+"How Well Does GPT-4o Understand Vision? Evaluating Multimodal Foundation
+  Models on Standard Computer Vision Tasks",GPT-4o对视觉理解的能力如何？基于标准计算机视觉任务评估多模态基础模型,Multimodal LLM,Other,https://arxiv.org/pdf/2507.01955,https://huggingface.co/papers/2507.01955,本文系统评估了多模态基础模型（如GPT-4o）在标准计算机视觉任务上的表现，包括语义分割、目标检测、图像分类及几何预测等。研究通过将视觉任务转化为文本提示形式，克服了模型输出限制和访问权限不足的问题，建立了统一的评测框架。结果显示，尽管这些模型在视觉理解上仍落后于专门设计的模型，但作为通用模型表现出较强能力，尤其在语义任务中表现更佳。GPT-4o在非推理模型中表现最佳，推理模型则在几何任务上有所提升。此外，具备图像生成能力的模型存在一定的语义幻觉和空间误差。该研究为多模态模型视觉理解能力的定位和改进提供了重要参考。,4
+"Eka-Eval : A Comprehensive Evaluation Framework for Large Language
+  Models in Indian Languages",Eka-Eval：面向印度语言的大型语言模型综合评估框架,LLM,Other,https://arxiv.org/pdf/2507.01853,https://huggingface.co/papers/2507.01853,本文提出了EKA-EVAL，一个面向印度多语言环境的大型语言模型综合评测框架。该框架整合了35个以上的评测基准，包括10个印度语种专属数据集，涵盖推理、数学、工具使用、长文本理解和阅读理解等多种任务。相比现有工具，EKA-EVAL支持分布式推理、多GPU加速和模型量化，具有更广泛的适用性和扩展性。该框架开源公开，旨在推动多语言模型的公平评测，促进印度及全球语言技术的发展。,3
+"Lost in Latent Space: An Empirical Study of Latent Diffusion Models for
+  Physics Emulation",迷失在潜在空间：潜在扩散模型在物理仿真中的实证研究,Diffusion Model,Other,https://arxiv.org/pdf/2507.02608,https://huggingface.co/papers/2507.02608,本文探讨了在物理系统仿真中，利用潜在空间扩散模型加速动态系统模拟的可行性。研究发现，将生成过程放在自动编码器的潜在空间中，能够在高达1000倍的压缩率下保持较高的预测准确性。相比传统非生成模型，扩散模型不仅预测更精确，还能通过多样化的结果更好地反映不确定性。此外，论文还总结了训练潜在空间仿真器时关键的架构和优化策略，为快速且可靠的物理仿真提供了新的方法路径。,3
