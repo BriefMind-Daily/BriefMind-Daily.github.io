@@ -1,0 +1,2 @@
+﻿标题,中文标题,发布日期,领域分类,研究机构,PDF链接,论文链接,arXiv ID,简明摘要
+Assemble Your Crew: Automatic Multi-agent Communication Topology Design via Autoregressive Graph Generation,组建你的团队：通过自回归图生成实现自动多智能体通信拓扑设计,24 Jul 2025,Agent,Other,http://arxiv.org/pdf/2507.18224v1,http://arxiv.org/abs/2507.18224v1,2507.18224v1,本文提出了一种名为ARG-Designer的新方法，旨在自动设计多智能体系统的协作结构。不同于传统依赖固定模板和预设交互方式的方法，ARG-Designer通过逐步生成图结构，动态确定所需智能体数量、角色及其通信连接，从而灵活适应不同任务需求。实验证明，该方法在多个测试任务中表现优异，具备更高的效率和更强的扩展性。此研究为多智能体系统的自动化设计提供了创新思路和有效工具。
