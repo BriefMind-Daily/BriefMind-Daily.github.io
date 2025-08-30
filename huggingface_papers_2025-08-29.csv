@@ -1,0 +1,6 @@
+﻿标题,中文标题,领域分类,研究机构,PDF链接,论文链接,简明摘要,Upvote数
+"Analysing Chain of Thought Dynamics: Active Guidance or Unfaithful
+  Post-hoc Rationalisation?",链式思维动态分析：主动引导还是不忠实的事后合理化？,LLM,Other,https://arxiv.org/pdf/2508.19827,https://huggingface.co/papers/2508.19827,"本文系统分析了大型语言模型在软推理任务中使用“思维链”（Chain-of-Thought, CoT）机制的动态表现及其可信度。研究发现，不同模型对CoT的依赖程度存在差异，且CoT生成的推理过程并不总是忠实反映模型的真实决策路径。部分情况下，CoT更像是对答案的事后合理化，而非有效引导推理。该工作揭示了CoT在提升模型推理能力方面的局限，强调了理解和评估CoT可信性的重要性，为未来改进模型解释性和推理质量提供了参考。",18
+"SEAM: Semantically Equivalent Across Modalities Benchmark for
+  Vision-Language Models",SEAM：面向视觉-语言模型的跨模态语义等价基准,Multimodal LLM,Other,https://arxiv.org/pdf/2508.18179,https://huggingface.co/papers/2508.18179,本文提出了SEAM基准，用于评估视觉-语言模型在不同模态间的推理一致性。SEAM通过四个领域中语义等价但符号体系不同的文本与图像配对，避免了传统基于OCR的图文匹配带来的信息不对称问题，实现了对模型文本符号推理和视觉空间推理能力的严格比较。对21个主流模型的测试显示，视觉模态表现普遍落后于语言模态，且跨模态一致性较低，主要原因包括文本标注的分词错误和视觉感知导致的幻觉。该基准为多模态模型的统一推理能力提供了标准化的测评环境，推动相关研究发展。,6
+Training a Foundation Model for Materials on a Budget,在预算限制下训练材料基础模型,AI4Science,Other,https://arxiv.org/pdf/2508.16067,https://huggingface.co/papers/2508.16067,本文提出了Nequix，一种紧凑且高效的材料基础模型，旨在显著降低训练成本同时保持较高的预测精度。Nequix基于简化的E(3)-对称架构，结合现代训练技术和优化器，实现了比现有顶尖模型低四分之一的训练资源消耗，并在多个材料性能基准测试中表现优异，推理速度提升了一个数量级。该方法为资源有限的研究团队提供了经济实用的材料建模解决方案。作者公开了模型权重和完整代码，促进社区复现与应用。,1
