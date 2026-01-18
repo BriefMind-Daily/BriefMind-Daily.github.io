@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BriefMind Daily</title>
+    <meta name="description" content="BriefMind Daily - 自动收集和整合最新的AI研究论文和前沿动态">
+    <meta name="keywords" content="LLM, 人工智能, 论文, 推荐, 学术, 研究">
+    
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-1KYVE3XMYZ"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-1KYVE3XMYZ');
+    </script>
+    
+    <!-- Favicon -->
+    <link rel="apple-touch-icon" href="./favicon_io/apple-touch-icon.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="./favicon_io/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="./favicon_io/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="./favicon_io/favicon-16x16.png">
+    <link rel="icon" href="./favicon_io/favicon.ico" type="image/x-icon">
+    <link rel="manifest" href="./favicon_io/site.webmanifest">
+    
+    <!-- Safari特别支持 -->
+    <link rel="apple-touch-icon" href="./favicon_io/apple-touch-icon.png">
+    <link rel="apple-touch-icon" href="./favicon_io/apple-touch-icon.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="./favicon_io/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="./favicon_io/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="./favicon_io/favicon-16x16.png">
+    <link rel="icon" href="./favicon_io/favicon.ico" type="image/x-icon">
+    <link rel="manifest" href="./favicon_io/site.webmanifest">
+    <link rel="mask-icon" href="./favicon_io/favicon.ico" color="#5bbad5">
+    
+    <!-- CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="./css/style.1768745307.css?v=1.0.1">
+    
+    <!-- Preload -->
+    <link rel="preconnect" href="https://cdn.jsdelivr.net">
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+<script>window.DEPLOYED_VERSION = true;</script>
+</head>
+<body>
+    <!-- 导航栏 -->
+    <nav class="navbar navbar-expand-lg navbar-light fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="#home">
+                <div class="logo-container">
+                    <div class="logo-icons">
+                        <i class="fas fa-robot"></i>
+                        <i class="fas fa-calendar-day"></i>
+                    </div>
+                    <span class="logo-text">BriefMind</span>
+                </div>
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="#home">首页</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="./index.html#papers" id="nav-papers-link">论文</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="./index.html#wechat" id="nav-wechat-link">公众号推文</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 首页 -->
+    <section id="home" class="hero-section">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-6">
+                    <div class="hero-content">
+                        <h1>BriefMind Daily</h1>
+                        <h2 class="hero-subtitle">Stay Informed, Stay Ahead.</h2>
+                        <p>智能追踪AI领域前沿研究与行业动态，自动收集并处理最新研究论文和微信公众号文章，帮助您快速把握领域最新发展趋势</p>
+                    </div>
+                </div>
+                <div class="col-lg-6 text-center">
+                    <div class="hero-buttons">
+                        <a href="./index.html#papers" class="btn btn-primary btn-lg action-btn" id="papers-btn">
+                            <i class="fas fa-file-alt me-2"></i>浏览论文
+                        </a>
+                        <a href="./index.html#wechat" class="btn btn-outline-primary btn-lg action-btn" id="wechat-btn">
+                            <i class="fab fa-weixin me-2"></i>查看推文
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 功能特点 -->
+    <section id="features" class="features-section">
+        <div class="container">
+            <div class="section-header text-center">
+                <h2>功能特点</h2>
+                <p>我们的系统提供多种功能，帮助您高效获取和管理学术资源</p>
+            </div>
+            <div class="row">
+                <div class="col-lg-4 col-md-6">
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-robot"></i>
+                        </div>
+                        <h3>自动收集</h3>
+                        <p>自动从多个来源收集最新的AI论文和推文，无需手动搜索</p>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6">
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-brain"></i>
+                        </div>
+                        <h3>智能分析</h3>
+                        <p>使用LLM分析论文内容，生成简明摘要，帮助快速理解核心内容</p>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6">
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-sync-alt"></i>
+                        </div>
+                        <h3>定期更新</h3>
+                        <p>系统每天自动更新，确保您能及时获取最新的研究成果和技术进展</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 页脚 -->
+    <footer class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4">
+                    <div class="footer-about">
+                        <h3>关于BriefMind Daily</h3>
+                        <p>BriefMind Daily是一个专注于AI领域的信息整合平台，旨在帮助研究人员跟踪最新的研究进展和技术动态</p>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="footer-links">
+                        <h3>快速链接</h3>
+                        <ul>
+                            <li><a href="#home">首页</a></li>
+                            <li><a href="./index.html#papers" id="footer-papers-link">论文</a></li>
+                            <li><a href="./index.html#wechat" id="footer-wechat-link">公众号文章</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="footer-contact">
+                        <h3>联系我们</h3>
+                        <p>如有任何问题或建议，请随时联系我们</p>
+                        <p class="designer-credits">Designed by  <a class="designer-email no-mail">Lijun Wu</a>, <a href="mailto:1192056830@qq.com" class="designer-email">Mengyuan Sun <i class="fas fa-envelope"></i></a>, <a href="mailto:1172640191@qq.com" class="designer-email">Mengjie Liu <i class="fas fa-envelope"></i></a></p>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 BriefMind Daily All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/lodash@4.17.21/lodash.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        $(window).on('load', function() {
+            let isScrolling = false; // 标记是否正在进行动画滚动
+            
+            $(window).scroll(function() {
+                if ($(this).scrollTop() > 50) {
+                    $('.navbar').addClass('scrolled');
+                } else {
+                    $('.navbar').removeClass('scrolled');
+                }
+            });
+            
+            $('#papers-btn, #wechat-btn').off('click').on('click', function(e) {
+                e.preventDefault();
+                e.stopPropagation();
+                
+                var target = $(this).attr('href');
+                var section = target.split('#')[1]; // 获取锚点部分（papers或wechat）
+                
+                var pathPrefix = window.DEPLOYED_VERSION ? './' : '/';
+                
+                var destinationUrl = pathPrefix + 'index.html?_scrollTo=' + section + '&_t=' + new Date().getTime() + '#' + section;
+                console.log('按钮点击事件触发，跳转到:', destinationUrl);
+                window.location.href = destinationUrl;
+                return false;
+            });
+            
+            $('#nav-papers-link, #nav-wechat-link, #footer-papers-link, #footer-wechat-link').off('click').on('click', function(e) {
+                e.preventDefault();
+                e.stopPropagation();
+                
+                var target = $(this).attr('href');
+                var section = target.split('#')[1]; // 获取锚点部分（papers或wechat）
+                
+                var pathPrefix = window.DEPLOYED_VERSION ? './' : '/';
+                
+                var destinationUrl = pathPrefix + 'index.html?_scrollTo=' + section + '&_t=' + new Date().getTime() + '#' + section;
+                console.log('导航链接点击事件触发，跳转到:', destinationUrl);
+                window.location.href = destinationUrl;
+                return false;
+            });
+            
+            $('.navbar-nav .nav-link[href^="/"]').on('click', function(e) {
+                e.preventDefault();
+                var targetUrl = $(this).attr('href');
+                
+                if(window.DEPLOYED_VERSION && targetUrl.startsWith('/')) {
+                    targetUrl = '.' + targetUrl;
+                }
+                
+                console.log('导航栏外部链接点击，跳转到:', targetUrl);
+                window.location.href = targetUrl;
+            });
+            
+            function updateActiveNavItem() {
+                // 如果正在进行动画滚动，不更新激活状态
+                if (isScrolling) return;
+                
+                var scrollPosition = $(window).scrollTop();
+                var windowHeight = $(window).height();
+                var currentSection = '';
+                var minDistance = Infinity;
+                
+                // 检查每个部分的位置
+                $('section').each(function() {
+                    var section = $(this);
+                    var sectionTop = section.offset().top - 100;
+                    var distance = Math.abs(scrollPosition - sectionTop);
+                    
+                    // 找到距离视口顶部最近的部分
+                    if (distance < minDistance) {
+                        minDistance = distance;
+                        currentSection = section.attr('id');
+                    }
+                });
+                
+                // 如果在顶部区域，激活首页
+                if (scrollPosition < 100) {
+                    currentSection = 'home';
+                }
+                
+                // 如果在底部，激活最后一个部分
+                if (scrollPosition + windowHeight >= $(document).height() - 100) {
+                    currentSection = $('section:last').attr('id');
+                }
+                
+                // 更新导航项的激活状态
+                $('.navbar-nav .nav-link').removeClass('active');
+                $('.navbar-nav .nav-link[href="#' + currentSection + '"]').addClass('active');
+            }
+            
+            $(window).scroll(_.throttle(updateActiveNavItem, 100));
+            
+            updateActiveNavItem();
+            
+            $('.navbar-nav .nav-link[href^="#"]').on('click', function(e) {
+                e.preventDefault();
+                var targetHref = $(this).attr('href');
+                var targetElement = $(targetHref);
+                
+                if (targetElement.length) {
+                    // 立即更新激活状态
+                    $('.navbar-nav .nav-link').removeClass('active');
+                    $(this).addClass('active');
+                    
+                    // 设置动画标记
+                    isScrolling = true;
+                    
+                    $('html, body').animate({
+                        scrollTop: targetElement.offset().top - 70
+                    }, {
+                        duration: 500,
+                        easing: 'easeInOutQuad',
+                        complete: function() {
+                            // 动画完成后恢复滚动监听
+                            setTimeout(function() {
+                                isScrolling = false;
+                            }, 100);
+                        }
+                    });
+                    
+                    $('.navbar-collapse').collapse('hide');
+                }
+            });
+            
+            // Logo点击滚动到顶部
+            $('.navbar-brand').on('click', function(e) {
+                e.preventDefault();
+                
+                // 立即更新激活状态
+                $('.navbar-nav .nav-link').removeClass('active');
+                $('.navbar-nav .nav-link[href="#home"]').addClass('active');
+                
+                // 设置动画标记
+                isScrolling = true;
+                
+                // 使用较短的动画时间和easeInOutQuad缓动
+                $('html, body').animate({
+                    scrollTop: 0
+                }, {
+                    duration: 500,
+                    easing: 'easeInOutQuad',
+                    complete: function() {
+                        // 动画完成后恢复滚动监听
+                        setTimeout(function() {
+                            isScrolling = false;
+                        }, 100);
+                    }
+                });
+                
+                $('.navbar-collapse').collapse('hide');
+            });
+            
+            $.easing.easeInOutQuad = function (x, t, b, c, d) {
+                if ((t/=d/2) < 1) return c/2*t*t + b;
+                return -c/2 * ((--t)*(t-2) - 1) + b;
+            };
+        });
+    </script>
+</body>
+</html> 

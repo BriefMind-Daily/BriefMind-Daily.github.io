@@ -1,0 +1,826 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BriefMind Daily</title>
+    <meta name="description" content="BriefMind Daily - 自动收集和整合最新的AI研究论文和前沿动态">
+    <meta name="keywords" content="LLM, 人工智能, 论文, 推荐, 学术, 研究">
+    
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-1KYVE3XMYZ"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-1KYVE3XMYZ');
+    </script>
+    
+    <!-- Favicon -->
+    <link rel="apple-touch-icon" href="./favicon_io/apple-touch-icon.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="./favicon_io/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="./favicon_io/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="./favicon_io/favicon-16x16.png">
+    <link rel="icon" href="./favicon_io/favicon.ico" type="image/x-icon">
+    <link rel="manifest" href="./favicon_io/site.webmanifest">
+    
+    <!-- Safari特别支持 -->
+    <link rel="apple-touch-icon" href="./favicon_io/apple-touch-icon.png">
+    <link rel="apple-touch-icon" href="./favicon_io/apple-touch-icon.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="./favicon_io/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="./favicon_io/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="./favicon_io/favicon-16x16.png">
+    <link rel="icon" href="./favicon_io/favicon.ico" type="image/x-icon">
+    <link rel="manifest" href="./favicon_io/site.webmanifest">
+    <link rel="mask-icon" href="./favicon_io/favicon.ico" color="#5bbad5">
+    
+    <!-- CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="./css/style.1768745307.css?v=1.0.1">
+    
+    <!-- Preload -->
+    <link rel="preconnect" href="https://cdn.jsdelivr.net">
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+</head>
+<body>
+    <!-- 导航栏 -->
+    <nav class="navbar navbar-expand-lg navbar-light fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="./home.html">
+                <div class="logo-container">
+                    <div class="logo-icons">
+                        <i class="fas fa-robot"></i>
+                        <i class="fas fa-calendar-day"></i>
+                    </div>
+                    <span class="logo-text">BriefMind</span>
+                </div>
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="./home.html">首页</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="#papers">论文</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#wechat">公众号推文</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 添加侧边筛选器 -->
+    <div class="filter-sidebar-container">
+        <!-- 触发器按钮移回到容器内部，添加内联点击事件处理 -->
+        <div class="filter-trigger" id="filterTrigger" onclick="toggleFilterSidebar(event); return false;">
+            <i class="fas fa-filter"></i>
+            <span class="filter-trigger-text">筛选</span>
+        </div>
+        
+        <div class="filter-sidebar" id="filterSidebar">
+            <!-- 原有筛选器内容 -->
+            <div class="filter-container">
+                <div class="filter-title">内容筛选</div>
+                <div class="row">
+                    <div class="col-12 mb-3">
+                        <label for="date-filter" class="form-label">按日期筛选：</label>
+                        <div class="date-filter-container">
+                            <select id="date-filter" class="form-select">
+                                <!-- 日期选项将通过JavaScript动态添加 -->
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-12 mb-3">
+                        <label for="field-filter" class="form-label">按领域筛选：</label>
+                        <div class="multi-select-container" id="field-filter-container">
+                            <div class="selected-options" id="selected-fields">
+                                <span class="selected-all">全部领域</span>
+                            </div>
+                            <div class="options-dropdown" id="field-options">
+                                <div class="option-item select-all selected" data-value="all">
+                                    <input type="checkbox" checked id="field-all">
+                                    <label for="field-all">全部领域</label>
+                                </div>
+                                <!-- 领域选项将通过JavaScript动态添加 -->
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12 mb-3">
+                        <label for="institution-filter" class="form-label">按机构筛选：</label>
+                        <div class="multi-select-container" id="institution-filter-container">
+                            <div class="selected-options" id="selected-institutions">
+                                <span class="selected-all">全部机构</span>
+                            </div>
+                            <div class="options-dropdown" id="institution-options">
+                                <div class="option-item select-all selected" data-value="all">
+                                    <input type="checkbox" checked id="institution-all">
+                                    <label for="institution-all">全部机构</label>
+                                </div>
+                                <!-- 机构选项将通过JavaScript动态添加 -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12 text-center">
+                        <button id="reset-filters" class="btn btn-outline-secondary btn-sm">重置筛选</button>
+                        <span id="filter-info" class="ms-3 text-muted"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 内容容器 -->
+    <div class="container content-container">
+        <!-- 删除原来的筛选器，因为已经移到侧边栏中 -->
+    </div>
+
+    <!-- 论文部分 -->
+    <section id="papers" class="papers-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="section-header text-center">
+                        <h2>论文</h2>
+                        <p>最新AI研究论文，按点赞数排序</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="row">
+                <div class="col-12">
+                    <div id="huggingface-papers-container" class="row">
+                        <!-- 论文卡片将在这里动态加载 -->
+                        <div class="col-12 text-center">
+                            <div class="spinner-border huggingface-loading" role="status">
+                                <span class="sr-only">Loading...</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 微信公众号文章 -->
+    <section id="wechat" class="wechat-section">
+        <div class="container">
+            <div class="section-header text-center">
+                <h2>微信公众号精选</h2>
+                <p>每日精选科技领域优质公众号文章，为您提供最新科技资讯</p>
+            </div>
+            
+            <div id="wechat-articles-container" class="row">
+                <!-- 文章将通过JavaScript动态添加 -->
+                <div class="col-12 text-center">
+                    <div class="spinner-border wechat-loading" role="status">
+                        <span class="visually-hidden">Loading...</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 页脚 -->
+    <footer class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4">
+                    <div class="footer-about">
+                        <h3>关于BriefMind Daily</h3>
+                        <p>BriefMind Daily是一个专注于AI领域的信息整合平台，旨在帮助研究人员跟踪最新的研究进展和技术动态</p>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="footer-links">
+                        <h3>快速链接</h3>
+                        <ul>
+                            <li><a href="./home.html">首页</a></li>
+                            <li><a href="#papers">论文</a></li>
+                            <li><a href="#wechat">公众号文章</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="footer-contact">
+                        <h3>联系我们</h3>
+                        <p>如有任何问题或建议，请随时联系我们</p>
+                        <p class="designer-credits">Designed by <a class="designer-email no-mail">Lijun Wu</a>, <a href="mailto:1192056830@qq.com" class="designer-email">Mengyuan Sun <i class="fas fa-envelope"></i></a>, <a href="mailto:1172640191@qq.com" class="designer-email">Mengjie Liu <i class="fas fa-envelope"></i></a></p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2025 BriefMind Daily All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- 返回筛选器按钮 -->
+    <div class="back-to-filter-btn" id="backToFilterBtn" title="返回顶部">
+        <i class="fas fa-arrow-up"></i>
+    </div>
+
+    <!-- 文章卡片模板 -->
+    <template id="article-template">
+        <div class="col-12 mb-3">
+            <div class="article-card">
+                <div class="card-header">
+                    <div class="title-row">
+                        <h3 class="card-title">
+                            <a href="#" class="article-title" target="_blank" style="text-decoration: none; color: #0a2d6e !important;"></a>
+                        </h3>
+                        <div class="tag-container">
+                            <span class="article-source"></span>
+                            <span class="article-field"></span>
+                            <div class="institution-tags"></div>
+                        </div>
+                    </div>
+                    <div class="original-title"></div>
+                </div>
+                <div class="summary-preview">
+                    <span class="summary-text"></span>
+                    <button class="toggle-summary-btn">
+                        <i class="fas fa-book-open"></i> 展开
+                    </button>
+                </div>
+                <div class="summary-container" style="display: none;">
+                    <div class="summary-content"></div>
+                    <button class="collapse-summary-btn">
+                        <i class="fas fa-book"></i> 收起
+                    </button>
+                </div>
+            </div>
+        </div>
+    </template>
+
+    <!-- 论文卡片模板 -->
+    <template id="paper-template">
+        <div class="col-12 mb-3">
+            <div class="article-card">
+                <div class="card-header">
+                    <div class="title-row">
+                        <h3 class="card-title">
+                            <a href="#" class="article-title" target="_blank" style="text-decoration: none; color: #0a2d6e !important;"></a>
+                        </h3>
+                        <div class="tag-container">
+                            <span class="article-source"></span>
+                            <span class="article-field"></span>
+                            <div class="institution-tags"></div>
+                        </div>
+                    </div>
+                    <div class="original-title"></div>
+                </div>
+                <div class="summary-preview">
+                    <span class="summary-text"></span>
+                    <button class="toggle-summary-btn">
+                        <i class="fas fa-book-open"></i> 展开
+                    </button>
+                </div>
+                <div class="summary-container" style="display: none;">
+                    <div class="summary-content"></div>
+                    <button class="collapse-summary-btn">
+                        <i class="fas fa-book"></i> 收起
+                    </button>
+                </div>
+            </div>
+        </div>
+    </template>
+
+    <!-- JavaScript -->
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/lodash@4.17.21/lodash.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jquery.easing@1.4.1/jquery.easing.min.js"></script>
+    <script src="./js/main.js"></script>
+    <script>
+        // 使用原生JavaScript直接为关闭按钮添加事件监听器，确保它能工作
+        document.addEventListener("DOMContentLoaded", function() {
+            // 获取关闭按钮元素
+            var closeButton = document.getElementById('filterClose');
+            
+            // 如果找到按钮，添加事件监听器
+            if(closeButton) {
+                // 移除所有现有的事件处理程序（如果有的话）
+                closeButton.removeAttribute('onclick');
+                
+                // 添加新的事件处理程序
+                closeButton.addEventListener("click", function(event) {
+                    // 阻止事件冒泡和默认行为
+                    event.stopPropagation();
+                    event.preventDefault();
+                    
+                    // 获取侧边栏元素
+                    var sidebar = document.getElementById('filterSidebar');
+                    
+                    // 如果找到侧边栏，移除active类
+                    if(sidebar) {
+                        sidebar.classList.remove('active');
+                        
+                        // 获取所有内容容器并移除with-sidebar类
+                        var containers = document.querySelectorAll('.content-container');
+                        for(var i=0; i<containers.length; i++) {
+                            containers[i].classList.remove('with-sidebar');
+                        }
+                    }
+                    
+                    console.log("原生JavaScript: 关闭按钮被点击，侧边栏已关闭");
+                    return false;
+                }, true); // true表示在捕获阶段处理事件，提高优先级
+                
+                console.log("原生JavaScript: 成功为关闭按钮添加了事件监听器");
+            } else {
+                console.error("原生JavaScript: 未找到关闭按钮元素");
+            }
+        });
+        
+        // 直接的全局函数用于关闭筛选器侧边栏
+        function closeFilterSidebar(event) {
+            if(event) {
+                event.preventDefault();
+                event.stopPropagation();
+            }
+            document.getElementById('filterSidebar').classList.remove('active');
+            document.querySelectorAll('.content-container').forEach(function(el) {
+                el.classList.remove('with-sidebar');
+            });
+            console.log("筛选器已通过全局函数关闭");
+            return false;
+        }
+        
+        // 直接的全局函数用于切换筛选器侧边栏
+        function toggleFilterSidebar(event) {
+            if(event) {
+                event.preventDefault();
+                event.stopPropagation();
+            }
+            var sidebar = document.getElementById('filterSidebar');
+            sidebar.classList.toggle('active');
+            
+            document.querySelectorAll('.content-container').forEach(function(el) {
+                el.classList.toggle('with-sidebar');
+            });
+            
+            console.log("筛选器状态已切换");
+            return false;
+        }
+        
+        // 配置 marked.js
+        marked.setOptions({
+            breaks: true,
+            gfm: true
+        });
+        
+        // 特别处理移动设备上的关闭按钮，确保它能正常工作
+        $(document).ready(function() {
+            console.log("文档已加载 - 初始化关闭按钮");
+            
+            // 确保关闭按钮能够正常工作
+            $('#filterClose').off('click').on('click', function(event) {
+                console.log("关闭按钮点击 - 独立绑定");
+                event.stopPropagation();
+                event.preventDefault();
+                
+                // 关闭侧边栏
+                $('#filterSidebar').removeClass('active');
+                $('.content-container').removeClass('with-sidebar');
+                
+                console.log("侧边栏已关闭");
+                return false;
+            });
+        });
+
+        // 等待 DOM 和所有资源加载完成
+        $(window).on('load', function() {
+            let isScrolling = false; // 标记是否正在进行动画滚动
+            
+            // 获取URL中的查询参数
+            function getQueryParam(name) {
+                const urlParams = new URLSearchParams(window.location.search);
+                return urlParams.get(name);
+            }
+            
+            // 页面加载时检查URL中的锚点，并滚动到对应位置
+            function scrollToAnchorOnLoad() {
+                // 检查是否有_scrollTo参数（从首页跳转）
+                var scrollToSection = getQueryParam('_scrollTo');
+                var hash = window.location.hash;
+                
+                // 如果有_scrollTo参数但没有hash，补充hash
+                if (scrollToSection && !hash) {
+                    hash = '#' + scrollToSection;
+                }
+                
+                // 如果有hash或者scrollToSection
+                if (hash) {
+                    console.log("Found hash in URL:", hash);
+                    console.log("ScrollToSection:", scrollToSection);
+                    
+                    // 保存目标部分信息
+                    window.targetScrollSection = {
+                        hash: hash,
+                        section: scrollToSection
+                    };
+                    
+                    // 延迟执行以确保页面完全加载
+                    setTimeout(function() {
+                        scrollToTarget(hash, scrollToSection);
+                    }, scrollToSection === 'wechat' ? 800 : 500); // 微信部分给予更长的延迟
+                }
+            }
+            
+            // 滚动到目标位置的函数，可以重复调用
+            function scrollToTarget(hash, scrollToSection) {
+                // 查找目标元素
+                var targetElement = $(hash);
+                
+                // 如果找到目标元素
+                if (targetElement.length) {
+                    console.log("Scrolling to:", hash, "Top position:", targetElement.offset().top);
+                    
+                    // 区分微信部分和论文部分的处理
+                    var scrollDuration = 800;
+                    var scrollOffset = -80;
+                    
+                    // 从首页跳转到微信部分时给予更长的延迟和不同的偏移
+                    if (scrollToSection === 'wechat' || hash === '#wechat') {
+                        scrollOffset = -80;
+                        
+                        // 先让页面预先滚动到大致位置
+                        $(window).scrollTop(targetElement.offset().top - 100);
+                    }
+                    
+                    // 滚动到目标元素位置，增加偏移量以补偿固定导航栏
+                    $('html, body').animate({
+                        scrollTop: targetElement.offset().top + scrollOffset
+                    }, {
+                        duration: scrollDuration,
+                        easing: 'easeInOutQuad',
+                        complete: function() {
+                            console.log("滚动完成到:", hash);
+                            
+                            // 更新导航栏激活状态
+                            $('.navbar-nav .nav-link').removeClass('active');
+                            $('.navbar-nav .nav-link[href="' + hash + '"]').addClass('active');
+                        }
+                    });
+                }
+            }
+            
+            // 监听微信内容加载完成事件
+            document.addEventListener('wechat_content_loaded', function(e) {
+                console.log('微信内容加载完成事件触发', e.detail);
+                
+                // 检查是否需要滚动到微信部分
+                if (window.targetScrollSection && 
+                    (window.targetScrollSection.hash === '#wechat' || 
+                     window.targetScrollSection.section === 'wechat')) {
+                    
+                    // 检查加载尝试次数，延迟时间随尝试次数增加，确保DOM更新完成
+                    const attemptDelay = e.detail.attempt ? (e.detail.attempt * 100) : 200;
+                    console.log(`微信内容加载尝试 ${e.detail.attempt || 1}，延迟 ${attemptDelay}ms 后滚动`);
+                    
+                    // 短暂延迟，确保DOM完全更新
+                    setTimeout(function() {
+                        var wechatSection = $('#wechat');
+                        if (wechatSection.length) {
+                            // 获取最新的偏移位置和容器信息
+                            var wechatTop = wechatSection.offset().top;
+                            var navbarHeight = $('.navbar').outerHeight() || 70; // 获取导航栏高度或使用默认值
+                            
+                            console.log("微信内容加载后再次滚动", {
+                                wechatTop: wechatTop,
+                                navbarHeight: navbarHeight,
+                                targetPosition: wechatTop - navbarHeight - 10,
+                                articleCount: e.detail.articleCount,
+                                windowScrollY: window.scrollY,
+                                innerHeight: window.innerHeight
+                            });
+                            
+                            // 检查内容是否完全加载
+                            if (e.detail.articleCount > 0) {
+                                // 如果是从首页跳转来的，使用不同的策略
+                                if (window.targetScrollSection.section === 'wechat') {
+                                    // 先尝试直接滚动
+                                    window.scrollTo({
+                                        top: wechatTop - navbarHeight - 10,
+                                        behavior: 'auto'
+                                    });
+                                    
+                                    // 再使用平滑滚动微调
+                                    setTimeout(function() {
+                                        $('html, body').animate({
+                                            scrollTop: wechatTop - navbarHeight - 10
+                                        }, {
+                                            duration: 500,
+                                            easing: 'easeInOutQuad'
+                                        });
+                                    }, 100);
+                                } else {
+                                    // 普通滚动使用动画
+                                    $('html, body').animate({
+                                        scrollTop: wechatTop - navbarHeight - 10
+                                    }, {
+                                        duration: 500,
+                                        easing: 'easeInOutQuad'
+                                    });
+                                }
+                                
+                                // 更新导航栏激活状态
+                                $('.navbar-nav .nav-link').removeClass('active');
+                                $('.navbar-nav .nav-link[href="#wechat"]').addClass('active');
+                            }
+                        }
+                    }, attemptDelay);
+                }
+            });
+            
+            // 调用函数执行滚动
+            scrollToAnchorOnLoad();
+            
+            // 导航栏滚动效果
+            $(window).scroll(function() {
+                if ($(this).scrollTop() > 50) {
+                    $('.navbar').addClass('scrolled');
+                } else {
+                    $('.navbar').removeClass('scrolled');
+                }
+            });
+            
+            // 处理导航栏外部链接的点击事件
+            $('.navbar-nav .nav-link[href^="/"]').on('click', function(e) {
+                e.preventDefault();
+                var targetUrl = $(this).attr('href');
+                window.location.href = targetUrl;
+            });
+            
+            // 处理页脚外部链接
+            $('.footer-links a[href^="/"]').on('click', function(e) {
+                e.preventDefault();
+                var targetUrl = $(this).attr('href');
+                window.location.href = targetUrl;
+            });
+            
+            // 滚动监听，激活对应的导航项
+            function updateActiveNavItem() {
+                // 如果正在进行动画滚动，不更新激活状态
+                if (isScrolling) return;
+                
+                var scrollPosition = $(window).scrollTop();
+                var windowHeight = $(window).height();
+                var currentSection = '';
+                var minDistance = Infinity;
+                
+                // 检查每个部分的位置
+                $('section').each(function() {
+                    var section = $(this);
+                    var sectionTop = section.offset().top - 100;
+                    var distance = Math.abs(scrollPosition - sectionTop);
+                    
+                    // 找到距离视口顶部最近的部分
+                    if (distance < minDistance) {
+                        minDistance = distance;
+                        currentSection = section.attr('id');
+                    }
+                });
+                
+                // 更新导航项的激活状态
+                $('.navbar-nav .nav-link').removeClass('active');
+                $('.navbar-nav .nav-link[href="#' + currentSection + '"]').addClass('active');
+            }
+            
+            // 使用 Lodash 的 throttle 函数限制滚动事件的触发频率
+            $(window).scroll(_.throttle(updateActiveNavItem, 100));
+            
+            // 页面加载时检查一次
+            updateActiveNavItem();
+            
+            // 点击导航链接平滑滚动
+            $('.navbar-nav .nav-link[href^="#"]').on('click', function(e) {
+                e.preventDefault();
+                var targetHref = $(this).attr('href');
+                var targetElement = $(targetHref);
+                if (targetElement.length) {
+                    // 立即更新激活状态
+                    $('.navbar-nav .nav-link').removeClass('active');
+                    $(this).addClass('active');
+                    
+                    // 设置动画标记
+                    isScrolling = true;
+                    
+                    // 使用较短的动画时间和easeInOutQuad缓动
+                    $('html, body').animate({
+                        scrollTop: targetElement.offset().top - 70
+                    }, {
+                        duration: 500,
+                        easing: 'easeInOutQuad',
+                        complete: function() {
+                            // 动画完成后恢复滚动监听
+                            setTimeout(function() {
+                                isScrolling = false;
+                            }, 100);
+                        }
+                    });
+                    
+                    // 关闭移动端菜单
+                    $('.navbar-collapse').collapse('hide');
+                }
+            });
+            
+            // 添加 jQuery easeInOutQuad 缓动函数
+            $.easing.easeInOutQuad = function (x, t, b, c, d) {
+                if ((t/=d/2) < 1) return c/2*t*t + b;
+                return -c/2 * ((--t)*(t-2) - 1) + b;
+            };
+            
+            // 返回筛选器按钮功能
+            $(window).scroll(function() {
+                // 当滚动超过100px时显示按钮
+                if ($(this).scrollTop() > 100) {
+                    $('#backToFilterBtn').addClass('show');
+                } else {
+                    $('#backToFilterBtn').removeClass('show');
+                }
+            });
+            
+            // 点击返回按钮滚动到页面顶部
+            $('#backToFilterBtn').click(function() {
+                // 使用更平滑的动画曲线
+                $('html, body').animate({
+                    scrollTop: 0 // 直接滚动到页面顶部
+                }, {
+                    duration: 800,
+                    easing: 'easeOutCubic'
+                });
+                return false;
+            });
+        });
+
+        // 侧边筛选器功能 - 添加调试输出
+        $(function() {
+            console.log("初始化侧边筛选器功能...");
+            
+            // 确保我们能够找到关键元素
+            console.log("筛选器侧边栏:", $('#filterSidebar').length ? "找到" : "未找到");
+            console.log("筛选器触发器:", $('#filterTrigger').length ? "找到" : "未找到");
+            console.log("筛选器容器:", $('.filter-sidebar-container').length ? "找到" : "未找到");
+            
+            var hoverTimeout;
+            var isMobile = $(window).width() < 576;
+            
+            // 检测屏幕尺寸变化，更新移动设备标志
+            $(window).resize(function() {
+                isMobile = $(window).width() < 576;
+            });
+            
+            // 鼠标悬停显示筛选器 - 仅在非移动设备上
+            if (!isMobile) {
+                $('.filter-sidebar-container').hover(
+                    function() {
+                        console.log("鼠标进入筛选器容器");
+                        clearTimeout(hoverTimeout);
+                        $('#filterSidebar').addClass('active');
+                        $('.content-container').addClass('with-sidebar');
+                    },
+                    function() {
+                        console.log("鼠标离开筛选器容器");
+                        // 设置延迟，避免鼠标稍微移出就立即关闭
+                        hoverTimeout = setTimeout(function() {
+                            console.log("延迟后关闭筛选器");
+                            $('#filterSidebar').removeClass('active');
+                            $('.content-container').removeClass('with-sidebar');
+                        }, 300);
+                    }
+                );
+                
+                // 触发器悬停事件 - 仅在非移动设备上
+                $('#filterTrigger').hover(
+                    function() {
+                        console.log("鼠标进入触发器");
+                        clearTimeout(hoverTimeout);
+                        $('#filterSidebar').addClass('active');
+                        $('.content-container').addClass('with-sidebar');
+                    },
+                    function() {
+                        console.log("鼠标离开触发器");
+                        // 设置延迟关闭
+                        hoverTimeout = setTimeout(function() {
+                            console.log("延迟后关闭筛选器");
+                            $('#filterSidebar').removeClass('active');
+                            $('.content-container').removeClass('with-sidebar');
+                        }, 300);
+                    }
+                );
+            }
+            
+            // 点击筛选器内部阻止冒泡
+            $('#filterSidebar').click(function(e) {
+                e.stopPropagation();
+            });
+            
+            // 点击筛选器外部区域关闭筛选器（在移动设备上）
+            $(document).on('click touchstart', function(e) {
+                var $sidebar = $('#filterSidebar');
+                var $trigger = $('#filterTrigger');
+                
+                // 如果点击的不是筛选器内部元素，也不是触发器，则关闭筛选器
+                if ($sidebar.hasClass('active') && 
+                    !$sidebar.is(e.target) && 
+                    $sidebar.has(e.target).length === 0 && 
+                    !$trigger.is(e.target) && 
+                    $trigger.has(e.target).length === 0) {
+                    console.log("点击外部区域，关闭筛选器");
+                    closeFilterSidebar();
+                }
+            });
+            
+            // 更新返回按钮功能，现在返回到顶部而不是触发筛选器
+            $('#backToFilterBtn').click(function() {
+                $('html, body').animate({
+                    scrollTop: 0 // 滚动到页面顶部
+                }, {
+                    duration: 800,
+                    easing: 'easeOutCubic'
+                });
+                return false;
+            });
+        });
+    </script>
+    
+    <!-- 全局函数用于处理筛选器触发器的点击 -->
+    <script>
+        // 全局函数 - 切换筛选器侧边栏
+        function toggleFilterSidebar(event) {
+            console.log("触发器被点击");
+            event.preventDefault();
+            event.stopPropagation();
+            
+            var $sidebar = document.getElementById('filterSidebar');
+            var isActive = $sidebar.classList.contains('active');
+            
+            // 如果已经激活，则关闭
+            if (isActive) {
+                closeFilterSidebar();
+            } else {
+                // 否则打开
+                $sidebar.classList.add('active');
+                // 给所有content-container添加with-sidebar类
+                var contentContainers = document.getElementsByClassName('content-container');
+                for (var i = 0; i < contentContainers.length; i++) {
+                    contentContainers[i].classList.add('with-sidebar');
+                }
+                console.log("筛选器侧边栏已打开");
+            }
+            return false;
+        }
+        
+        // 全局函数 - 关闭筛选器侧边栏
+        function closeFilterSidebar() {
+            console.log("关闭筛选器侧边栏");
+            var $sidebar = document.getElementById('filterSidebar');
+            $sidebar.classList.remove('active');
+            
+            // 移除所有content-container的with-sidebar类
+            var contentContainers = document.getElementsByClassName('content-container');
+            for (var i = 0; i < contentContainers.length; i++) {
+                contentContainers[i].classList.remove('with-sidebar');
+            }
+            
+            console.log("筛选器侧边栏已关闭");
+        }
+        
+        // 当文档加载完成后，添加点击空白处关闭筛选器的功能
+        document.addEventListener('DOMContentLoaded', function() {
+            // 添加点击空白处关闭筛选器的功能
+            document.addEventListener('click', function(event) {
+                var $sidebar = document.getElementById('filterSidebar');
+                var $trigger = document.getElementById('filterTrigger');
+                
+                // 如果筛选器是打开的，且点击的不是筛选器内部元素，也不是触发器
+                if ($sidebar && $sidebar.classList.contains('active') && 
+                    !$sidebar.contains(event.target) && 
+                    !($trigger && $trigger.contains(event.target))) {
+                    closeFilterSidebar();
+                }
+            });
+            
+            // 防止点击筛选器内部导致筛选器关闭
+            var $sidebar = document.getElementById('filterSidebar');
+            if ($sidebar) {
+                $sidebar.addEventListener('click', function(event) {
+                    event.stopPropagation();
+                });
+            }
+        });
+    </script>
+</body>
+</html> 
